@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PortfolioProject index{% endblock %}
+
+{% block body %}
+    <h1>Portfolio Projects</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Url</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for portfolio_project in portfolio_projects %}
+            <tr>
+                <td>{{ portfolio_project.id }}</td>
+                <td>{{ portfolio_project.name }}</td>
+                <td>{{ portfolio_project.description }}</td>
+                <td>{{ portfolio_project.url }}</td>
+                <td>{{ portfolio_project.createdAt ? portfolio_project.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ portfolio_project.updatedAt ? portfolio_project.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ portfolio_project.image }}</td>
+                <td>
+                    <a href="{{ path('app_portfolio_project_show', {'id': portfolio_project.id}) }}">show</a>
+                    <a href="{{ path('app_portfolio_project_edit', {'id': portfolio_project.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_portfolio_project_new') }}">Create new</a>
+{% endblock %}
