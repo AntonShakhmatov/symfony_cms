@@ -7,7 +7,7 @@
   <div class="burger">
     <div class="burger__patty"></div>
   </div>
-  <ul class="nav__list">
+  {# <ul class="nav__list">
     <li class="nav__item">
       <a href="#1" class="nav__link c-blue"><img src="{{ asset('images/home-icon.png') }}" alt=""></a>
     </li>
@@ -20,6 +20,13 @@
     <li class="nav__item">
       <a href="#4" class="nav__link c-green"><img src="{{ asset('images/contact-icon.png') }}" alt=""></a>
     </li>
+  </ul> #}
+  <ul class="nav__list">
+  {% for post in posts %}
+     <li class="nav__item">
+      <a href='{{ host }}/{{ post.url }}' class="nav__link c-blue">{{ post.title }}</a>
+    </li>
+  {% endfor %}
   </ul>
 </nav>
 
