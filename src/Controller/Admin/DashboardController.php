@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Menu;
+use App\Entity\Page;
 use App\Entity\Post;
 use App\Entity\Category;
 use App\Entity\Tags;
@@ -43,6 +44,7 @@ class DashboardController extends AbstractDashboardController
 
             MenuItem::section('Content'),
             MenuItem::linkToCrud('Menu', 'fa fa-file-text', Menu::class),
+            MenuItem::linkToCrud('Create page', 'fa fa-book', Page::class),
             MenuItem::linkToCrud('Posts', 'fa fa-tags', Post::class),
             MenuItem::linkToCrud('Category', 'fa fa-tags', Category::class),
             MenuItem::linkToCrud('Tags', 'fa fa-tags', Tags::class),

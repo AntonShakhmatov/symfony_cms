@@ -7,9 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use  Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 
 class ImagesCrudController extends AbstractCrudController
 {
@@ -24,14 +22,14 @@ class ImagesCrudController extends AbstractCrudController
     //     return $this->render('admin/images/image.html.twig',);
     // }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            ImageField::new('path')
+                ->setBasePath('uploads/images/') // Путь к папке для отображения
+                ->setUploadDir('public/uploads/images/') // Путь к папке для загрузки
+                ->setUploadedFileNamePattern('[randomhash].[extension]') // Генерация уникального имени файла
+                ->setRequired(false),
         ];
     }
-    */
 }
