@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\PageRepository;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PageRepository::class)]
@@ -23,6 +25,9 @@ class Page
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $content = null;
 
+    #[ORM\Column(type: 'json', nullable: true)]
+    private $blocks = [];
+
     #[ORM\Column(nullable: true)]
     private ?array $meta = null;
 
@@ -37,6 +42,32 @@ class Page
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    /**
+     * @var Collection<int, HeaderBlock>
+     */
+    #[ORM\OneToMany(targetEntity: HeaderBlock::class, mappedBy: 'headerBlock', cascade: ['persist', 'remove'])]
+    private Collection $headerBlock;
+
+    /**
+     * @var Collection<int, BodyBlock>
+     */
+    #[ORM\OneToMany(targetEntity: BodyBlock::class, mappedBy: 'bodyBlock', cascade: ['persist', 'remove'])]
+    private Collection $bodyBlock;
+
+    /**
+     * @var Collection<int, FooterBlock>
+     */
+    #[ORM\OneToMany(targetEntity: FooterBlock::class, mappedBy: 'footerBlock', cascade: ['persist', 'remove'])]
+    private Collection $footerBlock;
+
+
+    public function __construct()
+    {
+        $this->headerBlock = new ArrayCollection();
+        $this->bodyBlock = new ArrayCollection();
+        $this->footerBlock = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -138,4 +169,96 @@ class Page
 
         return $this;
     }
+
+
+    /**
+     * @return Collection<int, HeaderBlock>
+     */
+    public function getHeaderBlock(): Collection
+    {
+        return $this->headerBlock;
+    }
+
+    public function addHeaderBlock(HeaderBlock $headerBlock): self
+    {
+        if (!$this->headerBlock->contains($headerBlock)) {
+            $this->headerBlock[] = $headerBlock;
+            $headerBlock->setHeaderBlock($this); // Связываем блок с текущей страницей
+        }
+    
+        return $this;
+    }
+    
+    public function removeHeaderBlock(HeaderBlock $headerBlock): self
+    {
+        if ($this->headerBlock->removeElement($headerBlock)) {
+            // Разрываем связь, если блок принадлежит текущей странице
+            if ($headerBlock->getHeaderBlock() === $this) {
+                $headerBlock->setHeaderBlock(null);
+            }
+        }
+    
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BodyBlock>
+     */
+    public function getBodyBlock(): Collection
+    {
+        return $this->bodyBlock;
+    }
+
+    public function addBodyBlock(BodyBlock $bodyBlock): self
+    {
+        if (!$this->bodyBlock->contains($bodyBlock)) {
+            $this->bodyBlock[] = $bodyBlock;
+            $bodyBlock->setBodyBlock($this); // Связываем блок с текущей страницей
+        }
+    
+        return $this;
+    }
+    
+    public function removeBodyBlock(BodyBlock $bodyBlock): self
+    {
+        if ($this->bodyBlock->removeElement($bodyBlock)) {
+            // Разрываем связь, если блок принадлежит текущей странице
+            if ($bodyBlock->getBodyBlock() === $this) {
+                $bodyBlock->setBodyBlock(null);
+            }
+        }
+    
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FooterBlock>
+     */
+    public function getFooterBlock(): Collection
+    {
+        return $this->footerBlock;
+    }
+
+    public function addFooterBlock(FooterBlock $footerBlock): self
+    {
+        if (!$this->footerBlock->contains($footerBlock)) {
+            $this->footerBlock[] = $footerBlock;
+            $footerBlock->setFooterBlock($this); // Связываем блок с текущей страницей
+        }
+    
+        return $this;
+    }
+    
+    public function removeFooterBlock(FooterBlock $footerBlock): self
+    {
+        if ($this->footerBlock->removeElement($footerBlock)) {
+            // Разрываем связь, если блок принадлежит текущей странице
+            if ($footerBlock->getFooterBlock() === $this) {
+                $footerBlock->setFooterBlock(null);
+            }
+        }
+    
+        return $this;
+    }
+    
 }

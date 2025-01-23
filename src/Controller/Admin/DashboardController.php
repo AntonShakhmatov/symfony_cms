@@ -54,7 +54,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Font', 'fa fa-pen', Font::class),
 
             MenuItem::section('Users'),
-            MenuItem::linkToCrud('Comments', 'fa fa-comment', Comment::class),
+            // MenuItem::linkToCrud('Comments', 'fa fa-comment', Comment::class),
             MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
         ];
     }
