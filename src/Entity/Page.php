@@ -22,26 +22,20 @@ class Page
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $content = null;
-
-    #[ORM\Column(type: 'json', nullable: true)]
-    private $blocks = [];
-
-    #[ORM\Column(nullable: true)]
-    private ?array $meta = null;
+    // #[ORM\Column(nullable: true)]
+    // private ?array $meta = null;
 
     #[ORM\Column]
     private ?bool $is_published = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $image = null;
+    // #[ORM\Column(length: 255, nullable: true)]
+    // private ?string $image = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $createdAt = null;
+    // #[ORM\Column(nullable: true)]
+    // private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $updatedAt = null;
+    // #[ORM\Column(nullable: true)]
+    // private ?\DateTimeImmutable $updatedAt = null;
 
     /**
      * @var Collection<int, HeaderBlock>
@@ -60,7 +54,6 @@ class Page
      */
     #[ORM\OneToMany(targetEntity: FooterBlock::class, mappedBy: 'footerBlock', cascade: ['persist', 'remove'])]
     private Collection $footerBlock;
-
 
     public function __construct()
     {
@@ -98,41 +91,29 @@ class Page
         return $this;
     }
 
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
+    // public function getImage(): ?string
+    // {
+    //     return $this->image;
+    // }
 
-    public function setContent(?string $content): static
-    {
-        $this->content = $content;
+    // public function setImage(?string $image): self
+    // {
+    //     $this->image = $image;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
+    // public function getMeta(): ?array
+    // {
+    //     return $this->meta;
+    // }
 
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
+    // public function setMeta(?array $meta): static
+    // {
+    //     $this->meta = $meta;
 
-        return $this;
-    }
-
-    public function getMeta(): ?array
-    {
-        return $this->meta;
-    }
-
-    public function setMeta(?array $meta): static
-    {
-        $this->meta = $meta;
-
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function isPublished(): ?bool
     {
@@ -146,29 +127,29 @@ class Page
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+    // public function getCreatedAt(): ?\DateTimeImmutable
+    // {
+    //     return $this->createdAt;
+    // }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    {
-        $this->createdAt = $createdAt;
+    // public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    // {
+    //     $this->createdAt = $createdAt;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
+    // public function getUpdatedAt(): ?\DateTimeImmutable
+    // {
+    //     return $this->updatedAt;
+    // }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
-    {
-        $this->updatedAt = $updatedAt;
+    // public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    // {
+    //     $this->updatedAt = $updatedAt;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
 
     /**
@@ -260,5 +241,4 @@ class Page
     
         return $this;
     }
-    
 }

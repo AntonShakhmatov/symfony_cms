@@ -24,7 +24,7 @@
   <ul class="nav__list">
   {% for post in posts %}
      <li class="nav__item">
-      <a href='{{ host }}/{{ post.url }}' class="nav__link c-blue">{{ post.title }}</a>
+      <a href='{{ host }}/{{ post.pages }}' class="nav__link c-blue">{{ post.pages }}</a>
     </li>
   {% endfor %}
   </ul>

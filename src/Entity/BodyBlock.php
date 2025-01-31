@@ -13,8 +13,8 @@ class BodyBlock
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $type = null;
+    #[ORM\Column(length: 255, nullable: false)]
+    private ?string $type = 'default_type';
 
     #[ORM\Column(length: 255)]
     private ?string $content = null;

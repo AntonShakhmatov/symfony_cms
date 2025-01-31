@@ -18,6 +18,7 @@ class FooterBlockType extends AbstractType
         $builder
             ->add('type', TextType::class, [
                 'label' => 'Type of block (text)',
+                'required' => true,
                 'by_reference'  => false,
             ])
             ->add('content', TextareaType::class, [

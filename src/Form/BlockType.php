@@ -18,6 +18,7 @@ class BlockType extends AbstractType
         $builder
             ->add('type', TextType::class, [
                 'label' => 'Type of block (text)',
+                'required' => true
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Inside',

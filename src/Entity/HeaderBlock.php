@@ -13,11 +13,11 @@ class HeaderBlock
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $type = null;
+    // #[ORM\Column(length: 255, nullable: false)]
+    // private ?string $type = 'default_type';
 
-    #[ORM\Column(length: 255)]
-    private ?string $content = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $content = null;
 
     #[ORM\ManyToOne(inversedBy: 'headerBlock')]
     private ?Page $headerBlock = null;
@@ -27,29 +27,29 @@ class HeaderBlock
         return $this->id;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
+    // public function getType(): ?string
+    // {
+    //     return $this->type;
+    // }
 
-    public function setType(string $type): static
-    {
-        $this->type = $type;
+    // public function setType(string $type): static
+    // {
+    //     $this->type = $type;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
+    // public function getContent(): ?string
+    // {
+    //     return $this->content;
+    // }
 
-    public function setContent(string $content): static
-    {
-        $this->content = $content;
+    // public function setContent(string $content): static
+    // {
+    //     $this->content = $content;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getHeaderBlock(): ?Page
     {
