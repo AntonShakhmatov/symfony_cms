@@ -19,8 +19,11 @@ class Menu
     #[ORM\Column]
     private ?int $position = null;
 
-    #[ORM\Column(type: "json")]
-    private ?array $pages = [];
+    // #[ORM\Column(type: "json")]
+    // private ?array $pages = [];
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $page = null;
 
     public function getId(): ?int
     {
@@ -51,14 +54,14 @@ class Menu
         return $this;
     }
 
-    public function getPages(): ?array
+    public function getPages(): ?string
     {
-        return $this->pages;
+        return $this->page;
     }
 
-    public function setPages(?array $pages): self
+    public function setPages(?string $page): self
     {
-        $this->pages = $pages;
+        $this->page = $page;
 
         return $this;
     }

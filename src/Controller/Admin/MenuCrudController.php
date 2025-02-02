@@ -33,15 +33,17 @@ class MenuCrudController extends AbstractCrudController
         $pages = $this->pageRepository->findAll();
         $choices = [];
         foreach ($pages as $page) {
-            $choices[$page->getTitle()] = $page->getId(); // Используем title как метку, id как значение
+            $choices[$page->getTitle()] = $page->getTitle(); // Используем title как метку, id как значение
         }
         $numbers = [0,1,2,3,4,5];
 
         return [
             // IdField::new('id')->hideOnForm(),
+            // ChoiceField::new('pages', 'Pages')
+            //     ->setChoices($choices)
+                // ->allowMultipleChoices(),
             ChoiceField::new('pages', 'Pages')
-                ->setChoices($choices)
-                ->allowMultipleChoices(), // Если поле поддерживает выбор нескольких значений
+                ->setChoices($choices), // Теперь можно выбрать только 1 страницу
             ChoiceField::new('position', 'Position')
                 ->setChoices($numbers),
         ];
