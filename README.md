@@ -1,70 +1,67 @@
-Making CMS for portfolio project
+# Symfony CMS Portfolio Project
 
-Project Description
-
+## Project Description
 This is a basic Symfony project setup with minimal functionality. It includes routes for a home page and an admin panel, running on a local server.
 
-Requirements
+## Requirements
+- **PHP** 8.3+
+- **Composer** 2+
+- **Symfony CLI**
 
-PHP 8.3+
+## Getting Started
 
-Composer 2+
-
-Symfony CLI
-
-Starting the Server
-
-Clone the Repository
-
+### Clone the Repository
+```sh
 git clone https://github.com/AntonShakhmatov/symfony_cms.git
 cd symfony-cms
+```
 
-Set Up Environment Variables
-Copy the .env file and configure it as needed.
+### Set Up Environment Variables
+Copy the `.env` file and configure it as needed.
 
-**Install Dependencies**
-
+## Install Dependencies
+```sh
 composer install
+composer update
+```
 
-**Run the Symfony Server**
+## Database Migration
 
-symfony server:start
-
-The server will start at http://localhost:8000 by default.
-
-**Database Migration**
-
-Configure Database Connection
-Update the .env file with your database connection details, for example:
-
+### Configure Database Connection
+Update the `.env` file with your database connection details, for example:
+```env
 DATABASE_URL="mysql://username:password@127.0.0.1:3306/database_name"
+```
 
-Create the Database
-
+### Create the Database
+```sh
 php bin/console doctrine:database:create
+```
 
-Run Migrations
-
+### Run Migrations
+```sh
 php bin/console doctrine:migrations:diff
-
 php bin/console doctrine:migrations:migrate
+```
 
-(Optional) Load Fixtures
+### (Optional) Load Fixtures
 If you have fixtures for initial data, run:
-
+```sh
 php bin/console doctrine:fixtures:load
+```
 
-**Application Routes**
+## Run the Symfony Server
+```sh
+symfony server:start
+```
+The server will start at [http://localhost:8000](http://localhost:8000) by default.
 
-Home Page: http://localhost:8000/-home
+## Application Routes
+- **Home Page:** [http://localhost:8000/](http://localhost:8000/)
+- **Admin Panel:** [http://localhost:8000/admin](http://localhost:8000/admin)
 
-Admin Panel: http://localhost:8000/admin
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Support
-
-For questions or suggestions, open an Issue.
-
+## Support
+For questions or suggestions, open an **Issue** on GitHub.
